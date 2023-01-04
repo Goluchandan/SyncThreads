@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -6,8 +6,15 @@ import {
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { statesData } from '../Data';
-
+import { useNavigate } from "react-router-dom";
 const Streetmap = () => {
+  const userid = JSON.parse(localStorage.getItem("userid"));
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!userid) {
+      navigate("/signup");
+    }
+  }, [userid]);
 
   const center = [40.63463151377654, -97.89969605983609];
 
